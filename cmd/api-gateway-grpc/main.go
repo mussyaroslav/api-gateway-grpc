@@ -1,9 +1,9 @@
 package main
 
 import (
-	"grpc-gateway/config"
-	"grpc-gateway/internal/app"
-	"grpc-gateway/pkg/logger"
+	"api-gateway-grpc/config"
+	"api-gateway-grpc/internal/app"
+	"api-gateway-grpc/pkg/logger"
 	"os"
 	"os/signal"
 	"syscall"

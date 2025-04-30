@@ -12,6 +12,7 @@ type Config struct {
 	Server      `yaml:"server"`
 	LogFile     `yaml:"logFile"`
 	AuthService ClientGRPC `yaml:"auth_service"`
+	Certs       Certs      `yaml:"certs"`
 }
 
 type Server struct {
@@ -29,6 +30,12 @@ type ClientGRPC struct {
 	NegotiationType string `yaml:"negotiation_type" env-default:"plaintext"`
 	Cert            string `yaml:"cert"`
 	MaxMsgSize      int    `yaml:"max_msg_size" env-default:"4"`
+}
+
+type Certs struct {
+	Use bool   `yaml:"use"`
+	Crt string `yaml:"crt"`
+	Key string `yaml:"key"`
 }
 
 var cfg *Config

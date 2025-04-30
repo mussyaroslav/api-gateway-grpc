@@ -1,9 +1,9 @@
 package logger
 
 import (
-	"grpc-gateway/config"
-	"grpc-gateway/pkg/logger/handlers/slogpretty"
-	"grpc-gateway/pkg/logger/timeformatter"
+	"api-gateway-grpc/config"
+	"api-gateway-grpc/pkg/logger/handlers/slogpretty"
+	"api-gateway-grpc/pkg/logger/timeformatter"
 	"io"
 	"log/slog"
 	"os"

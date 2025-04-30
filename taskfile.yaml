@@ -44,9 +44,9 @@ tasks:
       - task: gen
       - echo 'Run project...';
       - if [ {{eq OS "windows"}} ]; then
-          go run '.\cmd\api-gateway\' -config=config.yaml;
+          go run '.\cmd\api-gateway-grpc\' -config=config.yaml;
         else
-          go run ./cmd/api-gateway/ -config=config.yaml;
+          go run ./cmd/api-gateway-grpc/ -config=config.yaml;
         fi
 
   build:
@@ -58,9 +58,9 @@ tasks:
       - task: gen
       - echo 'Build project...';
       - if [ {{eq OS "windows"}} ]; then
-          go build -ldflags="-s -w" '.\cmd\api-gateway\';
+          go build -ldflags="-s -w" '.\cmd\api-gateway-grpc\';
         else
-          go build -ldflags="-s -w" ./cmd/api-gateway/;
+          go build -ldflags="-s -w" ./cmd/api-gateway-grpc/;
         fi
       - echo 'SUCCESS';
 
@@ -73,7 +73,7 @@ tasks:
       - task: clear
       - echo 'Start project...';
       - if [ {{eq OS "windows"}} ]; then
-        cmd.exe /c '.\api-gateway.exe -config=config.yaml';
+        cmd.exe /c '.\api-gateway-grpc.exe -config=config.yaml';
         else
-        ./api-gateway -config=config.yaml;
+        ./api-gateway-grpc -config=config.yaml;
         fi

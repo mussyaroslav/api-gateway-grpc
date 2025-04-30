@@ -1,8 +1,8 @@
 package client
 
 import (
+	"api-gateway-grpc/config"
 	"fmt"
-	"grpc-gateway/config"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"

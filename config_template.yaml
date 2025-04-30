@@ -6,10 +6,15 @@ server:
 
 logFile:
   use: false
-  name: "grpc-gateway.log"
+  name: "grpc-gateway-grpc.log"
 
 auth_service:
   connect: "localhost:50051"
   negotiation_type: "plaintext" # plaintext | tls
   cert: "" #path to file cert for tls
   max_msg_size: 4
+
+certs:
+  use: false
+  crt: ""
+  key: ""
