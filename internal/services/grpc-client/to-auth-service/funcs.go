@@ -18,6 +18,54 @@ func (a *App) Ping(ctx context.Context) (bool, error) {
 	return result.(*apiAuthService.PingResponse).GetOk(), nil
 }
 
+func (a *App) Register(ctx context.Context, request *models.AuthRequest) (*models.AuthResponse, error) {
+	result, err := a.executeWithRetries(ctx, func(_ context.Context) (interface{}, error) {
+		return a.grpcClient.Register(ctx, &apiAuthService.RegisterRequest{
+			Email:    request.Email,
+			Password: request.Password,
+		})
+	})
+	if err != nil {
+		return nil, errors.Wrap(err, "request Register()")
+	}
+
+	// Приводим результат к нужному типу
+	resp, ok := result.(*apiAuthService.LoginResponse)
+	if !ok {
+		return nil, errors.New("unexpected response type from Register()")
+	}
+
+	registerResponse := &models.AuthResponse{
+		JWTToken: resp.JwtToken,
+	}
+
+	return registerResponse, nil
+}
+
+func (a *App) Login(ctx context.Context, request *models.AuthRequest) (*models.AuthResponse, error) {
+	result, err := a.executeWithRetries(ctx, func(_ context.Context) (interface{}, error) {
+		return a.grpcClient.Login(ctx, &apiAuthService.LoginRequest{
+			Email:    request.Email,
+			Password: request.Password,
+		})
+	})
+	if err != nil {
+		return nil, errors.Wrap(err, "request Login()")
+	}
+
+	// Приводим результат к нужному типу
+	resp, ok := result.(*apiAuthService.LoginResponse)
+	if !ok {
+		return nil, errors.New("unexpected response type from Login()")
+	}
+
+	loginResponse := &models.AuthResponse{
+		JWTToken: resp.JwtToken,
+	}
+
+	return loginResponse, nil
+}
+
 func (a *App) VerifyToken(ctx context.Context, token string) (*models.TokenInfo, error) {
 	result, err := a.executeWithRetries(ctx, func(_ context.Context) (interface{}, error) {
 		return a.grpcClient.VerifyToken(ctx, &apiAuthService.VerifyTokenRequest{Token: token})
@@ -29,7 +77,7 @@ func (a *App) VerifyToken(ctx context.Context, token string) (*models.TokenInfo,
 	// Приводим результат к нужному типу
 	resp, ok := result.(*apiAuthService.VerifyTokenResponse)
 	if !ok {
-		return nil, errors.New("unexpected response type from VerifyToken")
+		return nil, errors.New("unexpected response type from VerifyToken()")
 	}
 
 	// Проверяем валидность токена
