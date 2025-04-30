@@ -1,0 +1,43 @@
+env: local # local|dev|prod
+
+server:
+  host: "127.0.0.1"
+  port: 8085
+
+logFile:
+  use: false
+  name: "support-multi-tool.log"
+
+hub:
+  connect: "localhost:50106"
+  negotiation_type: "plaintext" # plaintext | tls
+  cert: "" #path to file cert for tls
+  max_msg_size: 12
+  
+director:
+  connect: "localhost:50105"
+  negotiation_type: "plaintext" # plaintext | tls
+  cert: "" #path to file cert for tls
+  max_msg_size: 4
+
+authRolesHub:
+  connect: "localhost:50107"
+  negotiation_type: "plaintext" # plaintext | tls
+  cert: "" #path to file cert for tls
+  max_msg_size: 4
+
+maestro:
+  connect: "localhost:50109"
+  negotiation_type: "plaintext" # plaintext | tls
+  cert: "" #path to file cert for tls
+  max_msg_size: 4
+
+certs:
+  use: false
+  user: ""
+  key: ""
+
+sso:
+  client_id: ""
+  client_secret: ""
+  auth_server_url: ""
