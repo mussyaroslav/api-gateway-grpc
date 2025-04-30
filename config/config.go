@@ -8,15 +8,10 @@ import (
 )
 
 type Config struct {
-	Env          string `yaml:"env" env-default:"local"`
-	Server       `yaml:"server"`
-	LogFile      `yaml:"logFile"`
-	Hub          ClientGRPC `yaml:"hub"`
-	Director     ClientGRPC `yaml:"director"`
-	AuthRolesHub ClientGRPC `yaml:"authRolesHub"`
-	Maestro      ClientGRPC `yaml:"maestro"`
-	Certs        Certs      `yaml:"certs"`
-	SSO          SSO        `yaml:"sso"`
+	Env         string `yaml:"env" env-default:"local"`
+	Server      `yaml:"server"`
+	LogFile     `yaml:"logFile"`
+	AuthService ClientGRPC `yaml:"auth_service"`
 }
 
 type Server struct {
@@ -34,18 +29,6 @@ type ClientGRPC struct {
 	NegotiationType string `yaml:"negotiation_type" env-default:"plaintext"`
 	Cert            string `yaml:"cert"`
 	MaxMsgSize      int    `yaml:"max_msg_size" env-default:"4"`
-}
-
-type Certs struct {
-	Use bool   `yaml:"use"`
-	Crt string `yaml:"crt"`
-	Key string `yaml:"key"`
-}
-
-type SSO struct {
-	ClientID      string `yaml:"client_id"`
-	ClientSecret  string `yaml:"client_secret"`
-	AuthServerUrl string `yaml:"auth_server_url"`
 }
 
 var cfg *Config

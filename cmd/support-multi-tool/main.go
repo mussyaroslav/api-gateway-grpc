@@ -1,11 +1,11 @@
 package main
 
 import (
+	"grpc-gateway/config"
+	"grpc-gateway/internal/app"
+	"grpc-gateway/pkg/logger"
 	"os"
 	"os/signal"
-	"support-multi-tool/config"
-	"support-multi-tool/internal/app"
-	"support-multi-tool/pkg/logger"
 	"syscall"
 )
 
