@@ -89,7 +89,7 @@ func (a *App) VerifyToken(ctx context.Context, token string) (*models.TokenInfo,
 		return nil, errors.New(errorMsg)
 	}
 
-	// Создаем и возвращаем информацию о токене
+	// Создаем и возвращаем информацию о jwt токене
 	tokenInfo := &models.TokenInfo{
 		UserID:  resp.UserId,
 		Email:   resp.Email,
