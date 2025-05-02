@@ -11,7 +11,6 @@ func (s *Service) setRoutes(r *gin.Engine) {
 	// общие запросы без валидации
 	r.GET("/health", s.Health)
 
-	// запросы с валидацией
 	api := r.Group("/api")
 	{
 		// Публичные маршруты (без аутентификации)
