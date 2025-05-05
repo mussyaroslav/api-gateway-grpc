@@ -19,7 +19,7 @@ func (s *Service) setRoutes(r *gin.Engine) {
 			public.GET("/some-public-endpoint")
 		}
 
-		// Маршруты, требующие аутентификации
+		// Маршруты требующие аутентификации
 		authenticated := api.Group("")
 		authenticated.Use(s.authReader())
 		{
